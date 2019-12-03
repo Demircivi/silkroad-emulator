@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>netcoreapp3.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Silkroad.ConsoleExtensions\Silkroad.ConsoleExtensions.csproj" />
+      <ProjectReference Include="..\Silkroad.Sockets\Silkroad.Sockets.csproj" />
+    </ItemGroup>
+
+</Project>

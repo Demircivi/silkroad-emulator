@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silkroad.Sockets", "Silkroad.Sockets\Silkroad.Sockets.csproj", "{9C63E31F-E922-4424-93CB-331C5C59943C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servers", "Servers", "{A9F774EC-AC10-43CD-ABD0-4A2306E9C5D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silkroad.Servers.Login", "Silkroad.Servers.Login\Silkroad.Servers.Login.csproj", "{1245845D-BA8A-4363-8C8B-C35F725221D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silkroad.Servers.Game", "Silkroad.Servers.Game\Silkroad.Servers.Game.csproj", "{018DA5D0-9C2B-4A13-8F7F-7EB7AE0F01D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silkroad.ConsoleExtensions", "Silkroad.ConsoleExtensions\Silkroad.ConsoleExtensions.csproj", "{529861FB-A837-41A5-A65F-4B9513A5B67D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silkroad.Shared", "Silkroad.Shared\Silkroad.Shared.csproj", "{1FB222B6-8328-40F3-9388-9C21E76A8E36}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1245845D-BA8A-4363-8C8B-C35F725221D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1245845D-BA8A-4363-8C8B-C35F725221D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1245845D-BA8A-4363-8C8B-C35F725221D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1245845D-BA8A-4363-8C8B-C35F725221D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{018DA5D0-9C2B-4A13-8F7F-7EB7AE0F01D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{018DA5D0-9C2B-4A13-8F7F-7EB7AE0F01D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{018DA5D0-9C2B-4A13-8F7F-7EB7AE0F01D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{018DA5D0-9C2B-4A13-8F7F-7EB7AE0F01D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{529861FB-A837-41A5-A65F-4B9513A5B67D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{529861FB-A837-41A5-A65F-4B9513A5B67D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{529861FB-A837-41A5-A65F-4B9513A5B67D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{529861FB-A837-41A5-A65F-4B9513A5B67D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FB222B6-8328-40F3-9388-9C21E76A8E36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FB222B6-8328-40F3-9388-9C21E76A8E36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FB222B6-8328-40F3-9388-9C21E76A8E36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FB222B6-8328-40F3-9388-9C21E76A8E36}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1245845D-BA8A-4363-8C8B-C35F725221D2} = {A9F774EC-AC10-43CD-ABD0-4A2306E9C5D2}
+		{018DA5D0-9C2B-4A13-8F7F-7EB7AE0F01D4} = {A9F774EC-AC10-43CD-ABD0-4A2306E9C5D2}
+	EndGlobalSection
+EndGlobal
