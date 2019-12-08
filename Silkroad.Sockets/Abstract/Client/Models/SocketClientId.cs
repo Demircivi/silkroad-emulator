@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Silkroad.Sockets.Client.Models
+﻿namespace Silkroad.Sockets.Abstract.Client.Models
 {
     public struct SocketClientId
     {

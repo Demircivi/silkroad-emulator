@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Silkroad.Shared.Lists

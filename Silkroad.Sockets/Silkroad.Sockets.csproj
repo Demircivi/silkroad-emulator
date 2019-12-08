@@ -8,4 +8,8 @@
       <ProjectReference Include="..\Silkroad.Shared\Silkroad.Shared.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Abstract" />
+    </ItemGroup>
+
 </Project>

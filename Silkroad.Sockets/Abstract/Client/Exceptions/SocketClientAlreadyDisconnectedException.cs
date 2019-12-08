@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Silkroad.Sockets.Client.Exceptions
+namespace Silkroad.Sockets.Abstract.Client.Exceptions
 {
     public class SocketClientAlreadyDisconnectedException: Exception
     {

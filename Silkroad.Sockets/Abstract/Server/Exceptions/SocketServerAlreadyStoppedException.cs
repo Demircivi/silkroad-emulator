@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Silkroad.Sockets.Server.Exceptions
+namespace Silkroad.Sockets.Abstract.Server.Exceptions
 {
     public class SocketServerAlreadyStoppedException: Exception
     {

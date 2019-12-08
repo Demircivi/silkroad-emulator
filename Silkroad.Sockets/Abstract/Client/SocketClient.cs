@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Net.Sockets;
 using System.Threading.Tasks;
-using Silkroad.Sockets.Client.Models;
+using Silkroad.Sockets.Abstract.Client.Models;
 
-namespace Silkroad.Sockets.Client
+namespace Silkroad.Sockets.Abstract.Client
 {
     internal class SocketClient
     {
@@ -50,7 +50,9 @@ namespace Silkroad.Sockets.Client
         {
             _isDisconnected = true;
 
-            OnDisconnected();
+            _socket.Disconnect(false);
+            
+            // NOTE: We're not calling OnDisconnect() because Receive() will call it when it receives SocketException
         }
         
         private async void Receive()
@@ -77,6 +79,8 @@ namespace Silkroad.Sockets.Client
         public async Task Send(byte[] buffer)
         {
             var bytesSent = await _socket.SendAsync(buffer, SocketFlags.None);
+
+            Console.WriteLine($"Sent {bytesSent} bytes");
         }
     }
 }

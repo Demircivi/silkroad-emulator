@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 using Silkroad.Shared.Lists;
-using Silkroad.Sockets.Client;
-using Silkroad.Sockets.Client.Models;
-using Silkroad.Sockets.Server.Exceptions;
+using Silkroad.Sockets.Abstract.Client;
+using Silkroad.Sockets.Abstract.Client.Models;
+using Silkroad.Sockets.Abstract.Server.Exceptions;
 
-namespace Silkroad.Sockets.Server
+namespace Silkroad.Sockets.Abstract.Server
 {
-    // TODO: Support for multiple start/stops sequences?
-    public class SocketServer
+    // TODO: Support for multiple start/stops sequences? Reusability
+    internal class SocketServer
     {
         #region Events
 
@@ -150,6 +146,18 @@ namespace Silkroad.Sockets.Server
             }
 
             await socketClient.Send(buffer);
+        }
+
+        public void Disconnect(SocketClientId id)
+        {
+            var socketClient = _socketClients.Find(i => i.Id == id);
+                
+            if (socketClient == null)
+            {
+                throw new SocketServerClientNotFoundException(id);
+            }
+            
+            socketClient.Disconnect();
         }
     }
 }

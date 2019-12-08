@@ -1,7 +1,7 @@
 ﻿using System;
-using Silkroad.Sockets.Client.Models;
+using Silkroad.Sockets.Abstract.Client.Models;
 
-namespace Silkroad.Sockets.Server.Exceptions
+namespace Silkroad.Sockets.Abstract.Server.Exceptions
 {
     public class SocketServerClientNotFoundException: Exception
     {
