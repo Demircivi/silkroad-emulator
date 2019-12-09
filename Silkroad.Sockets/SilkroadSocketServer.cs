@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using Silkroad.Sockets.Abstract.Client.Enums;
 using Silkroad.Sockets.Abstract.Client.Models;
 using Silkroad.Sockets.Abstract.Server;
 using Silkroad.Sockets.Packet;
@@ -12,7 +13,7 @@ namespace Silkroad.Sockets
 
         public delegate void ConnectedDelegate(SocketClientId id);
         public delegate void DataReceivedDelegate(SocketClientId id, PacketReader packetReader);
-        public delegate void DisconnectedDelegate(SocketClientId id);
+        public delegate void DisconnectedDelegate(SocketClientId id, SocketClientDisconnectType disconnectType);
         
         public event ConnectedDelegate Connected;
         public event DataReceivedDelegate DataReceived;
@@ -28,9 +29,9 @@ namespace Silkroad.Sockets
             DataReceived?.Invoke(id, packetReader);
         }
 
-        private void OnDisconnected(SocketClientId id)
+        private void OnDisconnected(SocketClientId id, SocketClientDisconnectType disconnectType)
         {
-            Disconnected?.Invoke(id);
+            Disconnected?.Invoke(id, disconnectType);
         }
         
         #endregion
@@ -91,9 +92,9 @@ namespace Silkroad.Sockets
             }
         }
 
-        private void SocketServerOnDisconnected(SocketClientId id)
+        private void SocketServerOnDisconnected(SocketClientId id, SocketClientDisconnectType disconnectType)
         {
-            OnDisconnected(id);
+            OnDisconnected(id, disconnectType);
         }
         
         #endregion

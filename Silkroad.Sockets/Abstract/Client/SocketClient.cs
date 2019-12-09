@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Net.Sockets;
 using System.Threading.Tasks;
+using Silkroad.Sockets.Abstract.Client.Enums;
+using Silkroad.Sockets.Abstract.Client.Exceptions;
 using Silkroad.Sockets.Abstract.Client.Models;
 
 namespace Silkroad.Sockets.Abstract.Client
@@ -10,7 +12,7 @@ namespace Silkroad.Sockets.Abstract.Client
         #region Events
 
         public delegate void DataReceivedDelegate(SocketClient socketClient, byte[] data);
-        public delegate void DisconnectedDelegate(SocketClient socketClient);
+        public delegate void DisconnectedDelegate(SocketClient socketClient, SocketClientDisconnectType disconnectType);
         
         public event DataReceivedDelegate DataReceived;
         public event DisconnectedDelegate Disconnected; 
@@ -20,14 +22,15 @@ namespace Silkroad.Sockets.Abstract.Client
             DataReceived?.Invoke(this, data);
         }
         
-        protected virtual void OnDisconnected()
+        protected virtual void OnDisconnected(SocketClientDisconnectType disconnectType)
         {
-            Disconnected?.Invoke(this);
+            Disconnected?.Invoke(this, disconnectType);
         }
         
         #endregion
 
         private const int BufferSize = 8 * 1024;
+        private const int PingMaximumMilliseconds = 30 * 1000;
         
         private Socket _socket;
         private readonly byte[] _buffer;
@@ -54,33 +57,57 @@ namespace Silkroad.Sockets.Abstract.Client
             
             // NOTE: We're not calling OnDisconnect() because Receive() will call it when it receives SocketException
         }
-        
+
         private async void Receive()
         {
             do
             {
                 try
                 {
-                    var bytesRead = await _socket.ReceiveAsync(_buffer, SocketFlags.None);
-                    
-                    var data = new byte[bytesRead];
+                    var receiveTask = _socket.ReceiveAsync(_buffer, SocketFlags.None);
+                    var bytesRead = await Task.WhenAny(Task.Delay(PingMaximumMilliseconds), receiveTask);
 
-                    Buffer.BlockCopy(_buffer, 0, data, 0, bytesRead);
+                    if (bytesRead != receiveTask)
+                    {
+                        throw new SocketClientTimeoutException();
+                    }
+
+                    var data = new byte[receiveTask.Result];
+
+                    Buffer.BlockCopy(_buffer, 0, data, 0, receiveTask.Result);
 
                     OnDataReceived(data);
                 }
-                catch (SocketException socketException)
+                catch (SocketClientTimeoutException ex)
                 {
                     Disconnect();
+
+                    OnDisconnected(SocketClientDisconnectType.HighPing);
+                }
+                catch (Exception ex) when (
+                    ex is SocketException ||
+                    ex is AggregateException && ex.InnerException is SocketException
+                )
+                {
+                    Disconnect();
+
+                    OnDisconnected(SocketClientDisconnectType.Disconnect);
                 }
             } while (!_isDisconnected);
         }
 
         public async Task Send(byte[] buffer)
         {
-            var bytesSent = await _socket.SendAsync(buffer, SocketFlags.None);
+            try
+            {
+                var bytesSent = await _socket.SendAsync(buffer, SocketFlags.None);
 
-            Console.WriteLine($"Sent {bytesSent} bytes");
+                Console.WriteLine($"Sent {bytesSent} bytes");
+            }
+            catch
+            {
+                // Ignored because the socket is disconnected when we get here, receive will take care of disconnection
+            }
         }
     }
 }

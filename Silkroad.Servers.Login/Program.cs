@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Silkroad.ConsoleExtensions;
 using Silkroad.Sockets;
+using Silkroad.Sockets.Abstract.Client.Enums;
 using Silkroad.Sockets.Abstract.Client.Models;
 using Silkroad.Sockets.Abstract.Server;
 using Silkroad.Sockets.Packet;
@@ -90,9 +91,9 @@ namespace Silkroad.Servers.Login
             }
         }
 
-        private static void ServerOnDisconnected(SocketClientId id)
+        private static void ServerOnDisconnected(SocketClientId id, SocketClientDisconnectType disconnectType)
         {
-            Console.WriteLine($"User disconnected with id: {id}");
+            Console.WriteLine($"User disconnected with id: {id}, disconnectType: {disconnectType}");
         }
     }
 }

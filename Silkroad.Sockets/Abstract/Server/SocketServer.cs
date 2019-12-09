@@ -3,6 +3,7 @@ using System.Net.Sockets;
 using System.Threading.Tasks;
 using Silkroad.Shared.Lists;
 using Silkroad.Sockets.Abstract.Client;
+using Silkroad.Sockets.Abstract.Client.Enums;
 using Silkroad.Sockets.Abstract.Client.Models;
 using Silkroad.Sockets.Abstract.Server.Exceptions;
 
@@ -15,7 +16,7 @@ namespace Silkroad.Sockets.Abstract.Server
 
         public delegate void ConnectedDelegate(SocketClientId id);
         public delegate void DataReceivedDelegate(SocketClientId id, byte[] data);
-        public delegate void DisconnectedDelegate(SocketClientId id);
+        public delegate void DisconnectedDelegate(SocketClientId id, SocketClientDisconnectType disconnectType);
         
         public event ConnectedDelegate Connected;
         public event DataReceivedDelegate DataReceived;
@@ -31,9 +32,9 @@ namespace Silkroad.Sockets.Abstract.Server
             DataReceived?.Invoke(id, data);
         }
         
-        protected virtual void OnDisconnected(SocketClientId id)
+        protected virtual void OnDisconnected(SocketClientId id, SocketClientDisconnectType disconnectType)
         {
-            Disconnected?.Invoke(id);
+            Disconnected?.Invoke(id, disconnectType);
         }
         
         #endregion
@@ -127,11 +128,11 @@ namespace Silkroad.Sockets.Abstract.Server
             OnDataReceived(socketClient.Id, data);
         }
         
-        private void SocketClientOnDisconnected(SocketClient socketClient)
+        private void SocketClientOnDisconnected(SocketClient socketClient, SocketClientDisconnectType disconnectType)
         {
             _socketClients.Remove(socketClient);
             
-            OnDisconnected(socketClient.Id);
+            OnDisconnected(socketClient.Id, disconnectType);
         }
         
         #endregion
