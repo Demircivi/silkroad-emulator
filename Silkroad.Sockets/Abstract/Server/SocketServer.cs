@@ -94,11 +94,11 @@ namespace Silkroad.Sockets.Abstract.Server
                     socketClient.DataReceived += SocketClientOnDataReceived;
                     socketClient.Disconnected += SocketClientOnDisconnected;
 
-                    // Start socket
-                    socketClient.Start();
-                    
                     // Call socket connected event
                     SocketClientOnConnected(socketClient);
+                    
+                    // Start socket
+                    socketClient.Start();
                 }
                 catch (SocketException socketException)
                 {

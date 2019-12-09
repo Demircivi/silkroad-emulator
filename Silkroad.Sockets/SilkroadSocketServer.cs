@@ -60,7 +60,7 @@ namespace Silkroad.Sockets
         public async void Send(SocketClientId id, PacketWriter packetWriter)
         {
             var bytes = packetWriter.GetBytes();
-            Console.WriteLine(BitConverter.ToString(bytes));
+            
             await _socketServer.Send(id, bytes);
         }
         
