@@ -8,6 +8,7 @@ using Silkroad.Sockets.Abstract.Client.Enums;
 using Silkroad.Sockets.Abstract.Client.Models;
 using Silkroad.Sockets.Abstract.Server;
 using Silkroad.Sockets.Packet;
+using Silkroad.Sockets.Packet.Classic;
 
 namespace Silkroad.Servers.Login
 {

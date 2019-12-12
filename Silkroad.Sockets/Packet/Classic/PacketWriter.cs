@@ -1,12 +1,10 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
-using Silkroad.Sockets.Packet.Exceptions;
+using Silkroad.Sockets.Packet.Classic.Exceptions;
 
-namespace Silkroad.Sockets.Packet
+namespace Silkroad.Sockets.Packet.Classic
 {
     public sealed class PacketWriter
     {

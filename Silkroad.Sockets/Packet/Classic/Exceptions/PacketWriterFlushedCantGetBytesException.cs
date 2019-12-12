@@ -1,6 +1,6 @@
 using System;
 
-namespace Silkroad.Sockets.Packet.Exceptions
+namespace Silkroad.Sockets.Packet.Classic.Exceptions
 {
     public class PacketWriterFlushedCantGetBytesException: Exception
     {

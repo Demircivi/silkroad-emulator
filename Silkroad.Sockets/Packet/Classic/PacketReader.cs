@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 
-namespace Silkroad.Sockets.Packet
+namespace Silkroad.Sockets.Packet.Classic
 {
     public sealed class PacketReader
     {
