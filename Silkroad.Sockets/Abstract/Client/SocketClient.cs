@@ -32,10 +32,10 @@ namespace Silkroad.Sockets.Abstract.Client
         private const int BufferSize = 8 * 1024;
         private const int PingMaximumMilliseconds = 30 * 1000;
         
-        private Socket _socket;
+        private readonly Socket _socket;
         private readonly byte[] _buffer;
         private bool _isDisconnected;
-        public SocketClientId Id { get; private set; }
+        public SocketClientId Id { get; }
 
         public SocketClient(Socket socket)
         {

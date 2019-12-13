@@ -41,8 +41,8 @@ namespace Silkroad.Sockets.Abstract.Server
 
         private bool _isStarted;
         private Socket _listenerSocket;
-        private readonly ThreadSafeList<SocketClient> _socketClients;        
-        
+        private readonly ThreadSafeList<SocketClient> _socketClients;
+
         public SocketServer(int port)
         {
             _listenerSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
