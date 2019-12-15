@@ -10,7 +10,7 @@ using Silkroad.Sockets.Abstract.Server.Exceptions;
 namespace Silkroad.Sockets.Abstract.Server
 {
     // TODO: Support for multiple start/stops sequences? Reusability
-    internal class SocketServer
+    internal sealed class SocketServer
     {
         #region Events
 
@@ -20,19 +20,19 @@ namespace Silkroad.Sockets.Abstract.Server
         
         public event ConnectedDelegate Connected;
         public event DataReceivedDelegate DataReceived;
-        public event DisconnectedDelegate Disconnected; 
-        
-        protected virtual void OnConnected(SocketClientId id)
+        public event DisconnectedDelegate Disconnected;
+
+        private void OnConnected(SocketClientId id)
         {
             Connected?.Invoke(id);
         }
-        
-        protected virtual void OnDataReceived(SocketClientId id, byte[] data)
+
+        private void OnDataReceived(SocketClientId id, byte[] data)
         {
             DataReceived?.Invoke(id, data);
         }
-        
-        protected virtual void OnDisconnected(SocketClientId id, SocketClientDisconnectType disconnectType)
+
+        private void OnDisconnected(SocketClientId id, SocketClientDisconnectType disconnectType)
         {
             Disconnected?.Invoke(id, disconnectType);
         }

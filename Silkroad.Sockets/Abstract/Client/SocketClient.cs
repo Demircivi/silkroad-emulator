@@ -7,7 +7,7 @@ using Silkroad.Sockets.Abstract.Client.Models;
 
 namespace Silkroad.Sockets.Abstract.Client
 {
-    internal class SocketClient
+    internal sealed class SocketClient
     {
         #region Events
 
@@ -15,14 +15,14 @@ namespace Silkroad.Sockets.Abstract.Client
         public delegate void DisconnectedDelegate(SocketClient socketClient, SocketClientDisconnectType disconnectType);
         
         public event DataReceivedDelegate DataReceived;
-        public event DisconnectedDelegate Disconnected; 
-        
-        protected virtual void OnDataReceived(byte[] data)
+        public event DisconnectedDelegate Disconnected;
+
+        private void OnDataReceived(byte[] data)
         {
             DataReceived?.Invoke(this, data);
         }
-        
-        protected virtual void OnDisconnected(SocketClientDisconnectType disconnectType)
+
+        private void OnDisconnected(SocketClientDisconnectType disconnectType)
         {
             Disconnected?.Invoke(this, disconnectType);
         }
